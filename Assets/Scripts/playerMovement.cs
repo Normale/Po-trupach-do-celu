@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    [SerializeField]private LayerMask layerMask;
     Rigidbody2D rb;
     BoxCollider2D boxCollider2D;
     float speed = 5;
@@ -29,7 +30,7 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (isJumpPressed)
+        if (isJumpPressed && _isGrounded() )
         {
             Debug.Log("jump");
            rb.velocity = Vector2.up * jumpspeed;
@@ -41,6 +42,12 @@ public class playerMovement : MonoBehaviour
         //rb.velocity.x = horizontalMove * Time.fixedDeltaTime;
         
 
+    }
+    private bool _isGrounded()
+    {
+        RaycastHit2D raycasthit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .2f, layerMask);
+        Debug.Log(raycasthit2d.collider);
+        return raycasthit2d.collider != null;
     }
    // private bool isGrounded()
     
