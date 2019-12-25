@@ -4,53 +4,77 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    [SerializeField]private LayerMask layerMask;
+    [SerializeField]
+    private LayerMask layerMask;
+
     Rigidbody2D rb;
     BoxCollider2D boxCollider2D;
+    public GameObject player;
+    public GameObject corpse;
     float speed = 5;
-    float jumpspeed = 5;
-    
+    float jumpSpeed = 5;
+    float horizontalMove;
     bool isMoving;
     bool isJumpPressed;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+
     private void Awake()
     {
         rb = transform.GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
-
+        
     }
 
     private void Update()
     {
         isJumpPressed = Input.GetButtonDown("Jump");
+        horizontalMove = Input.GetAxis("Horizontal") * speed;
     }
-    // Update is called once per frame
     private void FixedUpdate()
     {
-        if (isJumpPressed && _isGrounded() )
+        if (isJumpPressed && _isGrounded())
         {
-            Debug.Log("jump");
-           rb.velocity = Vector2.up * jumpspeed;
+            rb.velocity = Vector2.up * jumpSpeed;
         }
-
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
-        //horizontalMove = Input.GetAxis("Horizontal") * speed;
-
-        //rb.velocity.x = horizontalMove * Time.fixedDeltaTime;
-        
-
+        rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
     }
     private bool _isGrounded()
     {
         RaycastHit2D raycasthit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .15f, layerMask);
-        Debug.Log(raycasthit2d.collider);
         return raycasthit2d.collider != null;
     }
-   // private bool isGrounded()
-    
 
-    
+   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("kolizjaaa");
+        if (collision.gameObject.tag == "enemy") { 
+            Debug.Log("enemy colission");
+            Die();
+           
+
+        }
+        else if (collision.gameObject.tag == "Checkpoint")
+        {
+            Debug.Log("player got to checkpoint");
+        }
+    }
+    private void Die()
+    {
+        rb.velocity = Vector2.zero;
+
+        Vector3 deadPosition;
+        deadPosition = transform.position;
+        transform.position = Vector2.zero; //coordinates should be specific for every level or something it will be something like Scene.StartCoords
+
+        SpawnCorpse(deadPosition);
+
+    }
+    private void SpawnCorpse(Vector2 position)
+    {
+        GameObject newBox = Instantiate(corpse) as GameObject;
+        newBox.transform.position = position;
+    }
+
+
+
 }
