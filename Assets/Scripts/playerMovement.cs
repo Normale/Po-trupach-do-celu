@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private BoxCollider2D boxCollider2D;
-    private float speed = 5, jumpspeed = 5;
+    Rigidbody2D rb;
+    BoxCollider2D boxCollider2D;
+    float speed = 5;
+    float jumpspeed = 5;
     
-    bool jump = false;
-    private bool isMoving;
-    private bool isJumpPressed;
+    bool isMoving;
+    bool isJumpPressed;
     // Start is called before the first frame update
     void Start()
     {
