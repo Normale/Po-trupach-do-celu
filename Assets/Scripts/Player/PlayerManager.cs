@@ -1,4 +1,5 @@
 ﻿using Project.Networking;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,14 @@ namespace Project.Player
         private NetworkIdentity networkIdentity;
 
         public void Update()
+        {
+            if (networkIdentity.IsControlling())
+            {
+                CheckMovement();
+            }
+        }
+
+        private void CheckMovement()
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
