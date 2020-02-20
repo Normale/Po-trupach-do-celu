@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultSprite: {fileID: 21300000, guid: 130ad3e930c27ff4db751f5244a50549, type: 3}
   m_DefaultGameObject: {fileID: 8089057855554822603, guid: 4216149539cc9774188fcec8478966ac,
     type: 3}
-  m_DefaultColliderType: 2
+  m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 1
     m_Sprites:
@@ -27,10 +27,8 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0100000001000000020000000200000002000000
+    m_Neighbors: 020000000200000002000000
     m_NeighborPositions:
-    - {x: 1, y: 0, z: 0}
-    - {x: -1, y: 0, z: 0}
     - {x: 0, y: 1, z: 0}
     - {x: 1, y: 1, z: 0}
     - {x: -1, y: 1, z: 0}
