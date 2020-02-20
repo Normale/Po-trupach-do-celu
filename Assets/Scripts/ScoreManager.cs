@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     public TextMeshProUGUI text;
-    int score;
+    public event Action Won;
+    public int score;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class ScoreManager : MonoBehaviour
     public void ChangeScore(int coinValue)
     {
         score += coinValue;
-        text.text = score.ToString();
+        text.text = score.ToString() + " / 5";
+        if (score == 5) Won();
     }
 }
