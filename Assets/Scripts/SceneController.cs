@@ -82,56 +82,8 @@ public class SceneController : MonoBehaviour//, IPointerDownHandler
     }
 
 
-    /// <summary>method <c>_findStartingPoint</c> find the possible position to spawn corpse, to prevent spawning on collisions</summary>
-    /*private Vector2 _findStartingPoint(Vector2 position)
+  
+*/
 
-    {
-        int i = 1;
-        Debug.Log(i);
-        i++;
-        while (Physics2D.BoxCast(position, player.Collider.bounds.size, 0f, Vector2.down, .1f).collider != null) {
-            Debug.Log("collision at starting point");
-            position.y += i;
-        }
-        Debug.Log(i);
-        return position;
-    }
-    public void Spawn()
-    {
-        Vector2 spawnPosition;
-        var deadPosition = player.transform.position;
-        player.RigidBody.velocity = Vector2.zero;
-        spawnPosition = _findStartingPoint(Vector2.zero);//in future: SceneManager.Scene.startingPoint
-        player.transform.position = spawnPosition; 
-        GameObject newCorpse = Instantiate(corpse) as GameObject;
-        newCorpse.transform.position = deadPosition;
-    }
-    public void ClearInput()
-    {
-        if (!readyToClear)
-            return;
-        //reset inputs
-        Horizontal = 0f;
-        readyToClear = false;
 
-    }
-    void ProcessInputs()
-    {
-        Horizontal = Input.GetAxis("Horizontal");
-        IsJumpPressed = IsJumpPressed || Input.GetButtonDown("Jump");
-    }*/
-
-    /*public void OnPointerDown(PointerEventData eventData)
-    {
-        HandleSnowmanDied();
-    }
-
-    void HandleFingerSwipe(Lean.Touch.LeanFinger finger)
-    {
-        HandleSnowmanDied();
-    }*/
 }
-
-//anchors to buttons
-//podpinanie sie do eventu += albo -= - odpinanie
-// CTRL + ,

@@ -13,17 +13,13 @@ public class PlayerInput : MonoBehaviour
 
     public void SetIsJumpPressedTrue()
     {
-        Debug.Log(isJumpPressed);
         isJumpPressed = true;
     }
-
-    // Update is called once per frame
     void Update()
     {
         
         //if (GameManager.IsGameOver())
         //return;
-        //ProcessInputs();
         Horizontal = floatingJoystick.Horizontal;
         Horizontal = Mathf.Clamp(Horizontal, -1f, 1f);
 
@@ -43,8 +39,5 @@ public class PlayerInput : MonoBehaviour
     {
        Horizontal = Input.GetAxis("Horizontal");
        isJumpPressed = GetIsJumpPressed() || Input.GetButtonDown("Jump");
-    }
-    void ProcessTouchInputs()
-    {
     }
 }

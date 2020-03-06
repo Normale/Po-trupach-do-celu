@@ -23,17 +23,14 @@ public class Player : MonoBehaviour
     public Rigidbody2D RigidBody;
     public BoxCollider2D Collider;
     public SceneController controller;
-    //public GameObject player;
     public GameObject corpse;
 
     public TextMeshProUGUI HeartText;
 
     int lifes = 10;
-    //PlayerInput input;
 
     private void Start()
     {
-        //input = GetComponent<PlayerInput>();
         RigidBody = transform.GetComponent<Rigidbody2D>();
         Collider = transform.GetComponent<BoxCollider2D>();
 
@@ -52,7 +49,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //maximal velocity, in case of slopes need or sth. 
+        //todo: maximal velocity, in case of slopes need or sth. 
         // if (rb.velocity.y < maxFallSpeed) 
         RigidBody.velocity = new Vector2(controller.Horizontal * speed, RigidBody.velocity.y);
         //else
@@ -109,16 +106,14 @@ public class Player : MonoBehaviour
         newCorpse.transform.position = position;
     }
     private Vector2 findStartingPoint(Vector2 position)
-
+    /// <summary>method <c>_findStartingPoint</c> find the possible position to spawn corpse, to prevent spawning on collisions</summary>
     {
         int i = 5;
-        
         while (Physics2D.BoxCast(position, Collider.bounds.size, 0f, Vector2.down, .1f).collider != null)
         {
             Debug.Log("collision at starting point");
             position.y += i;
         }
-        Debug.Log(i);
         return position;
     }
 

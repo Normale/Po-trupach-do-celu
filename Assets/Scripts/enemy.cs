@@ -17,8 +17,6 @@ public class enemy : MonoBehaviour
         rb = transform.GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
     }
-
-    // Update is called once per frame
     void Update()
     {
 
